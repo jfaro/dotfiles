@@ -196,4 +196,9 @@ exec_always --no-startup-id feh --bg-fill /home/jfaro/images/macos-monterey.jpg
 bindsym $mod+x exec i3lock
 
 # Window colors
-# TODO
+# TOD
+
+# Gaps
+for_window [class=".*"] border pixel 2
+gaps inner 20
+gaps outer 0
