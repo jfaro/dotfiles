@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 12
+font pango:monospace 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -55,7 +55,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run -nb '#24273A' -sb '#8218C7' -fn 'pango:monospace:pixelsize=20'
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -186,7 +186,12 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+        position top
         status_command i3status -c /home/jfaro/.config/i3status/i3status.conf
+
+        colors {
+                background #24273A
+        }
 }
 
 # Display wallpaper
@@ -196,7 +201,18 @@ exec_always --no-startup-id feh --bg-fill /home/jfaro/images/macos-monterey.jpg
 bindsym $mod+x exec i3lock
 
 # Window colors
-# TOD
+set $colorwhite         #FFFFFF
+set $colorprimary       #8BD5CA
+set $colorindicator     #D595FF
+  
+# class                 border          backgr.         text            indicator       child_border
+client.focused          $colorprimary   $colorprimary   $colorwhite     $colorindicator $colorprimary
+client.focused_inactive #333333         #5f676a         $colorwhite     #484e50         #5f676a
+client.unfocused        #333333         #222222         #888888         #292d2e         #222222
+client.urgent           #2f343a         #900000         $colorwhite     #900000         #900000
+client.placeholder      #000000         #0c0c0c         $colorwhite     #000000         #0c0c0c
+
+client.background       $colorwhite
 
 # Gaps
 for_window [class=".*"] border pixel 2

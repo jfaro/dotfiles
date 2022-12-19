@@ -1,0 +1,22 @@
+background              #1B1E23
+foreground              #ABB2BF
+cursor                  #D0AFF2
+selection_background    #313640
+
+color0                  #161616
+color8                  #393939
+color1                  #FF4949
+color9                  #FF7A7A
+color2                  #49FF87
+color10                 #7AFFA7
+color3                  #FFF069
+color11                 #FFF59E
+color4                  #49B3FF
+color12                 #7AC7FF
+color5                  #D049FF
+color13                 #DD7AFF
+color6                  #49FFDE
+color14                 #7AFFE7
+color7                  #DFDFDF
+color15                 #FFFFFF
+selection_foreground    #333843
