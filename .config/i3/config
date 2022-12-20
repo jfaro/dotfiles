@@ -55,7 +55,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -nb '#24273A' -sb '#8218C7' -fn 'pango:monospace:pixelsize=20'
+bindsym $mod+d exec --no-startup-id dmenu_run -nb '#24273A' -sb '#43496b' -fn 'pango:monospace:pixelsize=20'
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -198,23 +198,41 @@ bar {
 exec_always --no-startup-id feh --bg-fill /home/jfaro/images/macos-monterey.jpg
 
 # Keybinding for i3lock
-bindsym $mod+x exec i3lock
+bindsym $mod+x exec i3lock --color=000000
 
 # Window colors
-set $colorwhite         #FFFFFF
-set $colorprimary       #8BD5CA
-set $colorindicator     #D595FF
+set $c_white         #FFFFFF
+set $c_lgrey         #cccccc
+set $c_dgrey         #333333
+set $c_black         #000000
+set $c_primary       #8BD5CA
+set $c_indicator     #D595FF
+set $c_alert         #883333
   
-# class                 border          backgr.         text            indicator       child_border
-client.focused          $colorprimary   $colorprimary   $colorwhite     $colorindicator $colorprimary
-client.focused_inactive #333333         #5f676a         $colorwhite     #484e50         #5f676a
-client.unfocused        #333333         #222222         #888888         #292d2e         #222222
-client.urgent           #2f343a         #900000         $colorwhite     #900000         #900000
-client.placeholder      #000000         #0c0c0c         $colorwhite     #000000         #0c0c0c
-
-client.background       $colorwhite
+# class                 border     backgr.      text      indicator    child_border
+client.focused          $c_primary $c_primary   $c_white  $c_indicator $c_primary
+client.focused_inactive $c_dgrey   $c_lgrey     $c_white  $c_lgrey     $c_lgrey
+client.unfocused        $c_dgrey   $c_dgrey     $c_lgrey  $c_dgrey     $c_dgrey
+client.urgent           $c_dgrey   $c_alert     $c_white  $c_alert     $c_alert 
+client.placeholder      $c_black   $c_black     $c_white  $c_black     $c_black
+client.background       $c_white
 
 # Gaps
 for_window [class=".*"] border pixel 2
 gaps inner 20
 gaps outer 0
+
+
+# Power menu
+set $sysmenu "  [r]estart - [l]ogout - [s]uspend - re[b]oot - po[w]eroff  "
+bindsym $mod+Shift+p      mode $sysmenu
+
+mode $sysmenu {
+    bindsym r         restart
+    bindsym l         exit
+    bindsym w         exec "systemctl poweroff"
+    bindsym b         exec "systemctl reboot"
+    bindsym s         exec "systemctl suspend"
+    bindsym Return    mode "default"
+    bindsym Escape    mode "default"
+}
