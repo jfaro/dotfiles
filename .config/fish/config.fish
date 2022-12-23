@@ -3,3 +3,9 @@ if status is-interactive
 end
 
 set fish_greeting
+
+# Git aliases
+alias gb="git branch"
+alias gst="git status"
+alias ga="git add"
+alias gcmsg="git commit -m"
