@@ -197,6 +197,9 @@ bar {
 # Display wallpaper
 exec_always --no-startup-id feh --bg-fill /home/jfaro/images/macos-monterey.jpg
 
+# Touchpad settings
+exec --no-startup-id xinput set-prop 'Microsoft Surface 045E:09AF Touchpad' 'libinput Accel Speed' 0.5
+
 # Keybinding for i3lock
 bindsym $mod+x exec i3lock --color=000000
 
@@ -205,21 +208,24 @@ set $c_white         #FFFFFF
 set $c_lgrey         #cccccc
 set $c_dgrey         #333333
 set $c_black         #000000
+set $c_bg0           #1b1e2c
+set $c_bg1           #24273A
+set $c_bg2           #2b3046
 set $c_primary       #8BD5CA
 set $c_indicator     #D595FF
 set $c_alert         #883333
   
-# class                 border     backgr.      text      indicator    child_border
-client.focused          $c_primary $c_primary   $c_white  $c_indicator $c_primary
-client.focused_inactive $c_dgrey   $c_lgrey     $c_white  $c_lgrey     $c_lgrey
-client.unfocused        $c_dgrey   $c_dgrey     $c_lgrey  $c_dgrey     $c_dgrey
-client.urgent           $c_dgrey   $c_alert     $c_white  $c_alert     $c_alert 
-client.placeholder      $c_black   $c_black     $c_white  $c_black     $c_black
+# class                 border     backgr.   text      indicator    child_border
+client.focused          $c_primary $c_bg2    $c_white  $c_indicator $c_primary
+client.focused_inactive $c_bg0     $c_bg1    $c_white  $c_bg0       $c_bg0
+client.unfocused        $c_bg0     $c_bg1    $c_white  $c_bg0       $c_bg0
+client.urgent           $c_bg0     $c_alert  $c_white  $c_alert     $c_alert 
+client.placeholder      $c_bg0     $c_black  $c_white  $c_black     $c_black
 client.background       $c_white
 
 # Gaps
 for_window [class=".*"] border pixel 2
-gaps inner 20
+gaps inner 8
 gaps outer 0
 
 
